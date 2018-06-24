@@ -23,7 +23,7 @@ namespace GeneratorData.BLL
                 double minAverage = Math.Round(target - tolerance, 2);
                 double maxAverage = Math.Round(target + tolerance, 2);
 
-                Random r = new Random();
+                Random r = new Random(DateTime.Now.Millisecond);
                 List<double> listNomre = new List<double>();
                 double sum = 0;
                 for (int i = 0; i < count; i++)
@@ -36,11 +36,8 @@ namespace GeneratorData.BLL
 
                 int adjustments = 0;
 
-
-
                 while (Math.Round((sum / count), 2) < minAverage || Math.Round((sum / count), 2) > maxAverage)
                 {
-
                    
                     if (Math.Round((sum / count), 2) < minAverage)
                     {

@@ -55,7 +55,7 @@ namespace GeneratorData
             txtMin.Clear();
             //txtNumberOfQuestions.Clear();
         }
-        public void ClearErrorErrorProvider()
+        public void ClearErrorProvider()
         {
             epCheckFiexdAverage.Clear();
             epCheckValueMinMax.Clear();
@@ -125,7 +125,7 @@ namespace GeneratorData
 
         public bool CheckError()
         {
-            ClearErrorErrorProvider();
+            ClearErrorProvider();
 
             bool hasError = false;
 
@@ -185,6 +185,7 @@ namespace GeneratorData
                     numberStudents += 1;
                 }
                 int resultCount = _buffer.WriteBufferToDb();
+
                 if (resultCount > 0)
                     return true;
 
@@ -217,7 +218,6 @@ namespace GeneratorData
                     FixedAvg = Double.Parse(txtFixedAvg.Text.Trim()),
                     Tolerance = Double.Parse(txtTolerance.Text.Trim()),
                     NumberQuestions = Int32.Parse(txtNumberOfQuestions.Text.Trim())
-
                 };
 
                 await ProgressAsync(workBook);
