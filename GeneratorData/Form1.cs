@@ -13,7 +13,7 @@ namespace GeneratorData
 {
     /// <summary>
     /// Random number with fixed average in c#
-    /// </summary>
+    /// </summary>+
     public partial class Form1 : Form
     {
         #region Fields
@@ -33,7 +33,7 @@ namespace GeneratorData
         #endregion
 
         #region Functions
-        public void EnableControls(Boolean enabled)
+        public void EnableControls(bool enabled)
         {
             pnlControls.Enabled = enabled;
             lstShow.Enabled = enabled;
