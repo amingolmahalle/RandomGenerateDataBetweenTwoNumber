@@ -49,7 +49,7 @@
   <ItemGroup>
     <Compile Include="BLL\CalculationBll.cs" />
     <Compile Include="BLL\ProjectBll.cs" />
-    <Compile Include="DAL\Entity\WorkBook.cs" />
+    <Compile Include="DAL\Entity\DataEntryDomain.cs" />
     <Compile Include="DAL\GetConnection.cs" />
     <Compile Include="DAL\ControlUtility.cs" />
     <Compile Include="DAL\SqlBuffer.cs" />

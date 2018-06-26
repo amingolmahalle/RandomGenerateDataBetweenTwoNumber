@@ -13,5 +13,9 @@ namespace GeneratorData.BLL
         {
             return ControlUtility.FillCmb("مشخص نشده", $"SELECT {colId},{colName} FROM {tableName} where {conditionName}={conditionValue}");
         }
+        public DataTable GetaAllDataTable(string tableName)
+        {
+            return new ControlUtility().GetAllData(tableName);
+        }
     }
 }

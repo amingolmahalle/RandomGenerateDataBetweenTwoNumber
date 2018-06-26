@@ -8,7 +8,7 @@ namespace GeneratorData.BLL
 {
    public class CalculationBll
     {
-    public void ProccessGenerateData(WorkBook workBookData, out List<double> nomreList, out int adjustmentsVal,out bool completed)
+    public void ProccessGenerateData(DataEntryDomain workBookData, out List<double> nomreList, out int adjustmentsVal,out bool completed)
     {
         try
         {

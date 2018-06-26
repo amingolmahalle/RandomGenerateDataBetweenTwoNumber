@@ -20,7 +20,7 @@ namespace GeneratorData.DAL
                 dt.Rows.InsertAt(row1, 0);
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -30,6 +30,28 @@ namespace GeneratorData.DAL
             }
             return dt;
         }
-      
+
+        public DataTable GetAllData(string tableName)
+        {
+            DataTable dt;
+            try
+            {
+                dt = new DataTable();
+                GetConnection.Open();
+                string query = $"select * from {tableName}";
+                new SqlDataAdapter(query, GetConnection.Conn).Fill(dt);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                GetConnection.Close();
+            }
+            return dt;
+        }
+
     }
 }

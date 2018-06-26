@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
@@ -53,7 +54,6 @@ namespace GeneratorData
             txtFixedAvg.Clear();
             txtMax.Clear();
             txtMin.Clear();
-            //txtNumberOfQuestions.Clear();
         }
         public void ClearErrorProvider()
         {
@@ -102,7 +102,7 @@ namespace GeneratorData
             Invoke(new Action(() => lblListShowCount.Text = lstShow.Items.Count.ToString()));
             Invoke(new Action(() => progressBar1.Visible = false));
         }
-        public async Task ProgressAsync(WorkBook workBookData)
+        public async Task ProgressAsync(DataEntryDomain workBookData)
         {
             _calculation = new CalculationBll();
             progressBar1.Visible = true;
@@ -145,10 +145,6 @@ namespace GeneratorData
             {
                 hasError = true;
             }
-            else if (txtNumberOfQuestions.Text.Trim() == string.Empty || txtNumberOfQuestions.Text.Trim() == "0")
-            {
-                hasError = true;
-            }
             else if (txtNumberStudents.Text.Trim() == string.Empty || txtNumberStudents.Text.Trim() == "0")
             {
                 hasError = true;
@@ -173,7 +169,7 @@ namespace GeneratorData
             }
             return hasError;
         }
-        public bool InsertData(List<double> nomreListSorted)
+        public bool InsertData(List<double> nomreListSorted,DataTable listStudents)
         {
             try
             {
@@ -181,7 +177,7 @@ namespace GeneratorData
                 _buffer = new SqlBuffer();
                 foreach (var row in nomreListSorted)
                 {
-                    _buffer.AddQuery($@"INSERT INTO Workbook_tbl VALUES({int.Parse(cmbLesson.SelectedValue.ToString())},{row},{numberStudents},{int.Parse(txtNumberOfQuestions.Text.Trim())})");
+                    _buffer.AddQuery($@"INSERT INTO Workbook_tbl VALUES({int.Parse(cmbLesson.SelectedValue.ToString())},{row},{numberStudents})");
                     numberStudents += 1;
                 }
                 int resultCount = _buffer.WriteBufferToDb();
@@ -210,14 +206,13 @@ namespace GeneratorData
                 }
                 EnableControls(false);
 
-                WorkBook workBook = new WorkBook
+                DataEntryDomain workBook = new DataEntryDomain
                 {
                     NumberStudents = Int32.Parse(txtNumberStudents.Text.Trim()),
                     Min = Double.Parse(txtMin.Text.Trim()),
                     Max = Double.Parse(txtMax.Text.Trim()),
                     FixedAvg = Double.Parse(txtFixedAvg.Text.Trim()),
-                    Tolerance = Double.Parse(txtTolerance.Text.Trim()),
-                    NumberQuestions = Int32.Parse(txtNumberOfQuestions.Text.Trim())
+                    Tolerance = Double.Parse(txtTolerance.Text.Trim())
                 };
 
                 await ProgressAsync(workBook);
@@ -249,8 +244,9 @@ namespace GeneratorData
 
             if (_copynomreList != null && _copynomreList.Any())
             {
+                var recordstudents = new ProjectBll().GetaAllDataTable("Student_Tbl");
                 _sortcopynomreList = _copynomreList.OrderByDescending(o => o).ToList();
-                MessageBox.Show(InsertData(_sortcopynomreList) ? MyMessage.OperationSuccessful : MyMessage.ErrorInsertData);
+                MessageBox.Show(InsertData(_sortcopynomreList, recordstudents) ? MyMessage.OperationSuccessful : MyMessage.ErrorInsertData);
             }
 
             else
