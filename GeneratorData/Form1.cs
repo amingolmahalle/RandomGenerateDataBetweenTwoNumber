@@ -14,7 +14,7 @@ namespace GeneratorData
 {
     /// <summary>
     /// Random number with fixed average in c#
-    /// </summary>+
+    /// </summary>
     public partial class Form1 : Form
     {
         #region Fields
@@ -173,12 +173,10 @@ namespace GeneratorData
         {
             try
             {
-                int numberStudents = 1001;
                 _buffer = new SqlBuffer();
-                foreach (var row in nomreListSorted)
+                for (int i=0;i<nomreListSorted.Count;i++)
                 {
-                    _buffer.AddQuery($@"INSERT INTO Workbook_tbl VALUES({int.Parse(cmbLesson.SelectedValue.ToString())},{row},{numberStudents})");
-                    numberStudents += 1;
+                    _buffer.AddQuery($@"INSERT INTO Workbook_tbl (Student_Id,Lessson_Id,Nomre) VALUES({listStudents.Rows[i][0]},{int.Parse(cmbLesson.SelectedValue.ToString())},{nomreListSorted[i]})");
                 }
                 int resultCount = _buffer.WriteBufferToDb();
 
