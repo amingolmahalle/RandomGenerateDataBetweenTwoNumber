@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using GeneratorData.Other;
 
 namespace GeneratorData.DAL
 {
@@ -11,13 +12,17 @@ namespace GeneratorData.DAL
         {
             try
             {
-                Conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+                Conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"]
+                    .ConnectionString;
+            }
+            catch (ApplicationConnectToDatabaseException)
+            {
+                throw new ApplicationConnectToDatabaseException();
             }
             catch (Exception ex)
-                                                                                                                                                                                                                                                                                                                                                                                  {
+            {
                 throw ex;
             }
-          
         }
 
         public static void Open()

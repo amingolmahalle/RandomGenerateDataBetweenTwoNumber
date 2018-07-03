@@ -5,17 +5,11 @@ namespace GeneratorData.BLL
 {
    public class ProjectBll
     {
-        public DataTable FillComboBoxControl(string tableName, string colId, string colName)
-        {
-            return ControlUtility.FillCmb("مشخص نشده", $"SELECT {colId},{colName} FROM {tableName}");
-        }
-        public DataTable FillComboBoxControlByFilter(string tableName, string colId, string colName, string conditionName, int conditionValue)
-        {
-            return ControlUtility.FillCmb("مشخص نشده", $"SELECT {colId},{colName} FROM {tableName} where {conditionName}={conditionValue}");
-        }
-        public DataTable GetaAllDataTable(string tableName)
-        {
-            return new ControlUtility().GetAllData(tableName);
-        }
+        public DataTable FillComboBoxControl(string tableName, string colId, string colName) => ControlUtility.FillCmb("مشخص نشده", $"SELECT {colId},{colName} FROM {tableName}");
+        
+        public DataTable FillComboBoxControlByFilter(string tableName, string colId, string colName, string conditionName, int conditionValue)=> ControlUtility.FillCmb("مشخص نشده", $"SELECT {colId},{colName} FROM {tableName} where {conditionName}={conditionValue}");
+        
+        public DataTable GetaAllDataTable(string tableName)=> new ControlUtility().GetAllData(tableName);
+        
     }
 }

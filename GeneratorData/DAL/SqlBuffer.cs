@@ -7,7 +7,8 @@ namespace GeneratorData.DAL
     public class SqlBuffer
     {
         #region fields
-        StringBuilder _sb = new StringBuilder();
+
+        private StringBuilder _sb = new StringBuilder();
         private readonly SqlConnection _conn = new SqlConnection();
         private int _commandCount;
         private SqlTransaction _transaction;

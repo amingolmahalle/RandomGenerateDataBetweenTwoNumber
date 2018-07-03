@@ -64,6 +64,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MyMessage.resx</DependentUpon>
     </Compile>
+    <Compile Include="Other\ProjectExceptions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

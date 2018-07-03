@@ -243,6 +243,7 @@ namespace GeneratorData
             if (_copynomreList != null && _copynomreList.Any())
             {
                 var recordstudents = new ProjectBll().GetaAllDataTable("Student_Tbl");
+
                 _sortcopynomreList = _copynomreList.OrderByDescending(o => o).ToList();
                 MessageBox.Show(InsertData(_sortcopynomreList, recordstudents) ? MyMessage.OperationSuccessful : MyMessage.ErrorInsertData);
             }
