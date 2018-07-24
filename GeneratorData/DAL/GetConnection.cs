@@ -21,6 +21,7 @@ namespace GeneratorData.DAL
             }
             catch (Exception ex)
             {
+                // ReSharper disable once PossibleIntendedRethrow
                 throw ex;
             }
         }

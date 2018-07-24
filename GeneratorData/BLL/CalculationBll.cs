@@ -12,9 +12,9 @@ namespace GeneratorData.BLL
         {
             try
             {
-              //  nomreList = new List<double>();
-               // adjustmentsVal = 0;
-               // completed = false;
+                //  nomreList = new List<double>();
+                // adjustmentsVal = 0;
+                // completed = false;
                 int count = workBookData.NumberStudents;
                 double min = workBookData.Min;
                 double max = workBookData.Max;
